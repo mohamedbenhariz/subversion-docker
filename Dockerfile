@@ -42,7 +42,7 @@ RUN mkdir -p /var/lib/svn/FirstRepo
 RUN svnadmin create --fs-type fsfs /var/lib/svn/FirstRepo
 RUN chmod -R 775 /var/lib/svn
 #RUN htpasswd -c /etc/global.htpasswd admin 
-RUN htpasswd -cbs /etc/global.htpasswd admin gotechnies
+RUN htpasswd -cbs /etc/global.htpasswd admin ali015400
 RUN echo "\$config->parentPath(\"/var/lib/svn\");"  >> /var/www/html/include/config.php
 RUN echo "\$config->addRepository(\"FirstRepo\", \"file:///var/lib/svn/FirstRepo\");" >> /var/www/html/include/config.php
 RUN  echo "<Location /svn> \n  DAV svn \n  SVNParentPath /var/lib/svn \n </Location>" >> /etc/apache2/mods-enabled/dav_svn.conf
@@ -50,7 +50,7 @@ RUN  echo "<Location /svn> \n  DAV svn \n  SVNParentPath /var/lib/svn \n </Locat
 
 #ssh enabled
 RUN mkdir /var/run/sshd
-RUN echo 'root:gotechnies' | chpasswd
+RUN echo 'root:ali015400' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN  sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 # SSH login fix. Otherwise user is kicked off after login
